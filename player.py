@@ -1,8 +1,27 @@
 import pygame
 from spritesheet import Spritesheet
+<<<<<<< HEAD
 import ptext
 from dialogo import Dialogo
 from dicionarios import dialogo
+=======
+
+class Jogador:
+    def __init__(self,x,y):
+        self.direita = False
+        self.esquerda = False
+        self.up = False
+        self.down = False
+        self.load_sprite()
+        self.rect = self.animation_direita[0].get_rect(center=(int(x),int(y)))
+        self.vel = 100
+        self.velx = 0
+        self.vely = 0
+        self.xpos = self.rect.x
+        self.ypos = self.rect.y
+        self.state = "idle"
+        self.tempo = 0
+>>>>>>> 22de142706235faeabf0690bf96dab6e00a3a155
 
 class Jogador:
     def __init__(self,x,y):
@@ -21,6 +40,7 @@ class Jogador:
         self.dialogo_action = False
         self.dialogo = None
 
+<<<<<<< HEAD
     def dialogar(self,obj_npc):
         if self.dialogo_action:
                 self.dialogo.atualizacao()
@@ -58,6 +78,20 @@ class Jogador:
             self.imagem = self.lista_animacao[1]
             return
 
+=======
+    def j_desenhar(self,display):
+
+        display.blit(self.imagem,self.rect)
+
+    def animacao(self,delta):
+
+        self.tempo += delta
+
+        if self.state == "idle":
+            self.imagem = self.lista_animacao[1]
+            return
+
+>>>>>>> 22de142706235faeabf0690bf96dab6e00a3a155
         if self.state == "movimento_esquerda":
             self.lista_animacao = self.animation_esquerda
 
@@ -107,8 +141,15 @@ class Jogador:
         if not self.down and not self.up and not self.direita and not self.esquerda:
             self.state = "idle"
             
+<<<<<<< HEAD
         self.rect.x += round(self.velx*dt)
         self.rect.y += round(self.vely*dt)
+=======
+        self.xpos += self.velx * dt
+        self.ypos += self.vely * dt
+        self.rect.x = round(self.xpos)
+        self.rect.y = round(self.ypos)
+>>>>>>> 22de142706235faeabf0690bf96dab6e00a3a155
         self.animacao(dt)
 
     def load_sprite(self):
@@ -121,10 +162,17 @@ class Jogador:
 
         for r in range(1,4):
 
+<<<<<<< HEAD
             self.animation_direita.append(sprite.sprite_load(f"sprite_red_left_{r}.png",(255, 200, 106),rev=True))
             self.animation_esquerda.append(sprite.sprite_load(f"sprite_red_left_{r}.png",(255, 200, 106)))
             self.animation_down.append(sprite.sprite_load(f"sprite_red_down_{r}.png",(255, 200, 106)))
             self.animation_up.append(sprite.sprite_load(f"sprite_red_up_{r}.png",(255, 200, 106)))
+=======
+            self.animation_direita.append(sprite.sprite_load(f"sprite_red_left_{r}.png",rev=True))
+            self.animation_esquerda.append(sprite.sprite_load(f"sprite_red_left_{r}.png"))
+            self.animation_down.append(sprite.sprite_load(f"sprite_red_down_{r}.png"))
+            self.animation_up.append(sprite.sprite_load(f"sprite_red_up_{r}.png"))
+>>>>>>> 22de142706235faeabf0690bf96dab6e00a3a155
 
         self.frame = 0
         self.imagem = 0
